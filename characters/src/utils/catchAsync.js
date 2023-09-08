@@ -1,0 +1,7 @@
+module.exports = (fn)=>{
+    return (req,res,next)=>{
+        fn(req,res).catch(error=>next(error))
+    }
+}
+
+// Funcion de orden superior, recibe una funcion, la mejora y la devuelve
