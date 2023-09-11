@@ -1,6 +1,5 @@
 const server = require('./src/server');
-
-const PORT=8001
+const {PORT}=process.env
 
 server.listen(PORT,()=>{
     console.log(`Characters service listening at port ${PORT}`);

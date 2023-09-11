@@ -1,6 +1,5 @@
 const server = require("./src/server");
-
-const PORT = 8003;
+const {PORT}=process.env
 
 server.listen(PORT, ()=>{
     console.log(`Plantes service listening at port ${PORT}`);
