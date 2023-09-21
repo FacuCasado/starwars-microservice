@@ -1,4 +1,4 @@
-const server = require('./src/server');
+import server from './src/server';
 const {PORT}=process.env
 
 server.listen(PORT,()=>{
