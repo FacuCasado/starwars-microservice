@@ -16,7 +16,10 @@ const filmSchema:Schema = new Schema<IFilm>({
         required:true
     },
     producer: String,
-    release_date: Date,
+    release_date: {
+        type:Date,
+        default: new Date()
+    },
     characters: [{
         type: String,
         ref:"Character"
@@ -33,8 +36,8 @@ filmSchema.statics.list = async function (): Promise<IFilm[]>{
     .populate("planets",["_id","name"])
 }
 
-filmSchema.statics.get = async function(_id:number):Promise<IFilm[]>{
-    return await this.findById(_id.toString())
+filmSchema.statics.get = async function(_id:string):Promise<IFilm[]>{
+    return await this.findById(_id)
     .populate("characters",["_id","name"])
     .populate("planets",["_id","name"])
 }

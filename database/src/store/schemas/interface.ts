@@ -19,7 +19,7 @@ export interface ICharacter extends Document{
 
 export interface ICharacterStatics extends Model<ICharacter>{
     list(): Promise<ICharacter[]>,
-    get(_id:number): Promise<ICharacter[]>,
+    get(_id:string): Promise<ICharacter[]>,
     insert(character:ICharacter): Promise<ICharacter[]>
 }
 
@@ -38,7 +38,7 @@ export interface IFilm extends Document{
 
 export interface IFilmStatics extends Model<IFilm>{
     list(): Promise<IFilm[]>,
-    get(_id:number): Promise<IFilm[]>,
+    get(_id:string): Promise<IFilm[]>,
     insert(film:IFilm): Promise<IFilm[]>
 }
 
@@ -60,6 +60,6 @@ export interface IPlanet extends Document{
 
 export interface IPlanetStatics extends Model<IPlanet>{
     list(): Promise<IPlanet[]>,
-    get(_id:number): Promise<IPlanet[]>,
+    get(_id:string): Promise<IPlanet[]>,
     insert(planet:IPlanet): Promise<IPlanet[]>
 }

@@ -48,8 +48,8 @@ planetSchema.statics.list = async function (): Promise<IPlanet[]>{
     .populate("films",["_id","title"])
 }
 
-planetSchema.statics.get = async function(_id:number):Promise<IPlanet[]>{
-    return await this.findById(_id.toString())
+planetSchema.statics.get = async function(_id:string):Promise<IPlanet[]>{
+    return await this.findById(_id)
     .populate("residents",["_id","name"])
     .populate("films",["_id","title"])
 }
