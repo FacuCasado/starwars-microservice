@@ -4,9 +4,9 @@ const {ClientError} = require("../utils/errors")
 
 module.exports=async(req,res)=>{
     const {id}=req.params;
-    const planet=Planets.id(id)
+    const planet=await Planets.id(id)
 
-    if(planet.length){
+    if(planet){
         response(res,200,planet)
     }else{
         throw new ClientError("Planet not found", 404)

@@ -3,5 +3,6 @@ const {catchAsync}=require("../utils")
 module.exports = {
     getPlanets:catchAsync(require("./getPlantets")),
     getIdPlanet:catchAsync(require("./getIdPlanet")),
-    postPlanets:catchAsync(require("./postPlanets"))
+    postPlanets:catchAsync(require("./postPlanets")),
+    deletePlanet: catchAsync(require("./deletePlanet"))
 }
