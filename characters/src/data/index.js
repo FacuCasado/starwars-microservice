@@ -1,7 +1,9 @@
-const characters = require("./characters.json");
+const axios = require("axios");
+const {DB_URI}=process.env
 
 module.exports = {
-    list:async ()=>{ return characters },
-    create:async()=>{ throw Error ("Hubo un error creando el personaje")},
-    id:async (id)=>{return characters.filter(char=>char.id===id)}
+    list:async ()=>{ const response = await axios.get(DB_URI); return response.data.data },
+    create:async(charData)=>{ const response = await axios.post(DB_URI,charData); return response.data.data},
+    id:async (id)=>{ const response = await axios.get(`${DB_URI}/${id}`);return response.data.data},
+    delete:async(id)=>{ const response = await axios.delete(`${DB_URI}/${id}`); return response.data.data}
 }
