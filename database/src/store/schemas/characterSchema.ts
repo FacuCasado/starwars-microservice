@@ -69,7 +69,7 @@ characterSchema.statics.insert = async function(character:ICharacter):Promise<IC
     return await this.create(character)
 }
 
-characterSchema.statics.delete = async function(_id:string):Promise<ICharacter>{
+characterSchema.statics.delete = async function(_id:string):Promise<ICharacter[]>{
     const character = await this.findById(_id)
 
     if(!character){

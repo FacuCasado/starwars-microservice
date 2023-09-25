@@ -4,12 +4,15 @@ import controllers from '../controllers';
 
 const router=Router()
 
+router.use(middlewares.modelValidation)
 
-router.get("/:model",middlewares.modelValidation,controllers.getModel)
+router.get("/:model", controllers.getModel)
 
-router.get("/:model/:id",middlewares.modelValidation,controllers.getModelId)
+router.get("/:model/:id", controllers.getModelId)
 
-router.post("/:model",middlewares.modelValidation,controllers.postModel)
+router.post("/:model", controllers.postModel)
+
+router.delete("/:model/:id", controllers.deleteModel)
 
 
 export default router

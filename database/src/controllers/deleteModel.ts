@@ -5,7 +5,7 @@ import utils from "../utils";
 const {response}=utils
 
 export default async (req:Request,res:Response)=>{
-    const {model, id}=req.body;
+    const {model, id}=req.params;
     const data = await store[model as keyof typeof store].delete(id);
     response(res, 200, data)
 }
