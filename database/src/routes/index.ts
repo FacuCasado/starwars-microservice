@@ -4,7 +4,7 @@ import controllers from '../controllers';
 
 const router=Router()
 
-router.use(middlewares.modelValidation)
+router.use("/:model",middlewares.modelValidation)
 
 router.get("/:model", controllers.getModel)
 

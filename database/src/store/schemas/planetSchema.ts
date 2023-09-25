@@ -1,9 +1,6 @@
 import { Schema } from "mongoose";
 import { IPlanet } from "./interface";
 import DatabaseError from "../../utils/errors";
-import store from "..";
-
-const {Character, Film}=store
 
 const planetSchema:Schema = new Schema<IPlanet>({
     _id:{
@@ -63,6 +60,10 @@ planetSchema.statics.insert = async function(planet:IPlanet):Promise<IPlanet[]>{
 }
 
 planetSchema.statics.delete = async function(_id:string):Promise<IPlanet[]>{
+
+    const store = require("../index")
+    const {Character, Film}=store
+
     const planet = await this.findById(_id)
 
     if(!planet){

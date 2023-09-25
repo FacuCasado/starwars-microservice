@@ -1,9 +1,7 @@
 import { Schema, Document, Model } from "mongoose";
 import { ICharacter } from "./interface";
-import store from "..";
 import DatabaseError from "../../utils/errors";
 
-const {Film, Planet}=store
 
 const characterSchema: Schema = new Schema<ICharacter>({
     _id:{
@@ -70,6 +68,10 @@ characterSchema.statics.insert = async function(character:ICharacter):Promise<IC
 }
 
 characterSchema.statics.delete = async function(_id:string):Promise<ICharacter[]>{
+
+    const store = require("../index")
+    const {Film, Planet}=store
+
     const character = await this.findById(_id)
 
     if(!character){

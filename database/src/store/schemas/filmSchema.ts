@@ -1,9 +1,6 @@
 import { Schema } from "mongoose";
 import { IFilm } from "./interface";
 import DatabaseError from "../../utils/errors";
-import store from "..";
-
-const {Character, Planet}=store
 
 const filmSchema:Schema = new Schema<IFilm>({
     _id:{
@@ -51,6 +48,10 @@ filmSchema.statics.insert = async function(film:IFilm):Promise<IFilm[]>{
 }
 
 filmSchema.statics.delete = async function(_id:string):Promise<IFilm[]>{
+
+    const store = require("../index")
+    const {Character, Planet}=store
+
     const film = await this.findById(_id)
 
     if(!film){
