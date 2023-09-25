@@ -15,7 +15,7 @@ services:
     build: 
       context: ./characters
     ports:
-      - ":8001"
+      - "8001:8001"
 
   films:
     container_name: films
@@ -23,7 +23,7 @@ services:
     build: 
       context: ./films
     ports:
-      - ":8002"
+      - "8002:8002"
 
   planets:
     container_name: planets
@@ -31,7 +31,7 @@ services:
     build: 
       context: ./planets
     ports:
-      - ":8003"
+      - "8003:8003"
 
   database:
     container_name: database
@@ -39,4 +39,4 @@ services:
     build: 
       context: ./database
     ports:
-      - ":8004"
+      - "8004:8004"
