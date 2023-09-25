@@ -77,14 +77,20 @@ characterSchema.statics.delete = async function(_id:string):Promise<ICharacter[]
     if(!character){
         throw new DatabaseError("Character not found", 404)
     }else{
-        await Film.updateMany(
-            {_id:{$in:character.films}},
-            {$pull:{characters:_id}}
-        )
-        await Planet.updateOne(
-            {_id:character.homeworld},
-            {$pull:{residents:_id}}
-        )
+
+        if(character.films.length){
+            await Film.updateMany(
+                {_id:{$in:character.films}},
+                {$pull:{characters:_id}}
+            )
+        }
+
+        if(character.homeworld){
+            await Planet.updateOne(
+                {_id:character.homeworld},
+                {$pull:{residents:_id}}
+            )
+        }
         return await this.findByIdAndDelete(_id)
     }
 }

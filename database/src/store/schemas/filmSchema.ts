@@ -57,10 +57,15 @@ filmSchema.statics.delete = async function(_id:string):Promise<IFilm[]>{
     if(!film){
         throw new DatabaseError("Film not found", 404)
     }else{
-        await Character.updateMany(
-            {_id:{$in:film.characters}},
-            {$pull:{films:_id}}
-        )
+
+        if(film.characters.length){
+            await Character.updateMany(
+                {_id:{$in:film.characters}},
+                {$pull:{films:_id}}
+            )
+        }
+
+        if(film.planets.length)
         await Planet.updateMany(
             {_id:{$in:film.planets}},
             {$pull:{films:_id}}

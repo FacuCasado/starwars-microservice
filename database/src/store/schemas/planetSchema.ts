@@ -69,14 +69,20 @@ planetSchema.statics.delete = async function(_id:string):Promise<IPlanet[]>{
     if(!planet){
         throw new DatabaseError("Planet not found", 404)
     }else{
-        await Character.updateMany(
-            {_id:{$in:planet.residents}},
-            {$set:{homeworld:null}}
-        )
-        await Film.updateMany(
-            {_id:{$in:planet.films}},
-            {$pull:{planets:_id}}
-        )
+
+        if(planet.residents.length){
+            await Character.updateMany(
+                {_id:{$in:planet.residents}},
+                {$set:{homeworld:null}}
+            )
+        }
+
+        if(planet.films.length){
+            await Film.updateMany(
+                {_id:{$in:planet.films}},
+                {$pull:{planets:_id}}
+            )
+        }
         return await this.findByIdAndDelete(_id)
     }
 }
