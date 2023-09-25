@@ -4,9 +4,9 @@ const { ClientError } = require("../utils/errors");
 
 module.exports = async(req,res)=>{
     const {id}=req.params
-    const film=Films.id(id)
+    const film=await Films.id(id)
 
-    if(film.length){
+    if(film){
         response(res,200,film)
     }else{
         throw new ClientError("Film not found",404)

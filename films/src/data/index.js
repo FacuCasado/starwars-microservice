@@ -1,7 +1,9 @@
-const films = require("./films.json")
+const axios = require("axios");
+const {DB_URI}=process.env
 
 module.exports = {
-    list:async ()=>{ return films },
-    id:async (id)=>{return films.filter(film=>film.id===id)},
-    create:async ()=>{ return "Post" }
+    list:async ()=>{ const response = await axios.get(DB_URI); return response.data.data },
+    id:async (id)=>{const response = await axios.get(`${DB_URI}/${id}`);return response.data.data},
+    create:async(filmData)=>{ const response = await axios.post(DB_URI,filmData); return response.data.data},
+    delete:async(id)=>{ const response = await axios.delete(`${DB_URI}/${id}`); return response.data.data}
 }
